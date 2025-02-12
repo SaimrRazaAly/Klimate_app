@@ -14,4 +14,4 @@ Klimate is a modern weather app built using **TypeScript**, **React**, and **Tai
 ### Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/klimate.git
+git clone https://github.com/SaimrRazaAly/Klimate_app
