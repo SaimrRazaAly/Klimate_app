@@ -1,5 +1,5 @@
 import { API_CONFIG } from "./conf";
-import { Coordinates, WeatherData } from "../Types/types";
+import { Coordinates, ForecastData, GeoCodingApi, WeatherData } from "../Types/types";
 
 class Weather {
   private CreateUrl(endpoint: string, params: Record<string, string | number>) {
@@ -30,13 +30,26 @@ class Weather {
 
     return this.fetchWeather<WeatherData>(url);
   }
-  async getCurrentWeather({ lat, lon }: Coordinates): Promise<WeatherData> {
-    const url = this.CreateUrl(`${API_CONFIG.BASE_URL}/weather`, {
+  async getForecast({ lat, lon }: Coordinates): Promise<ForecastData> {
+    const url = this.CreateUrl(`${API_CONFIG.BASE_URL}/forecast`, {
       lat: lat.toString(),
       lon: lon.toString(),
       units: API_CONFIG.DEFAULT_PARAMS.units,
     });
 
-    return this.fetchWeather<WeatherData>(url);
+    return this.fetchWeather<ForecastData>(url);
+  }
+  async getReverseGeo({ lat, lon }: Coordinates): Promise<GeoCodingApi[]> {
+    const url = this.CreateUrl(`${API_CONFIG.GEO}/reverse`, {
+      lat: lat.toString(),
+      lon: lon.toString(),
+      limitL:1
+    });
+
+    return this.fetchWeather<GeoCodingApi[]>(url); 
+    /* This means that the function returns a promise, and when that promise is resolved, it will give you an array ([]) of GeoCodingApi objects. */
   }
 }
+
+
+export const weatherAPI = new Weather();
