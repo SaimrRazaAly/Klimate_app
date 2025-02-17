@@ -9,7 +9,7 @@ export function useGeoLocation() {
     isLoading: true,
   });
 
-const getLocatoin = () => {
+const getLocation = () => {
     setLocationData((prev) => ({ ...prev, isLoading: true, error: null }));
 
     if (!navigator.geolocation) {
@@ -66,6 +66,6 @@ const getLocatoin = () => {
 
   return {
     ...locationData,
-    getLocatoin
+    getLocation
   };
 }
