@@ -23,6 +23,11 @@ const DashBoard = () => {
         <LocatoinError getLocation={getLocation} LocationError={LocationError}/>
       );
     }
+    if (!coordinates) {
+      return (
+        <LocatoinError LocationErrorStatus={false}/>
+      );
+    }
   };
   return (
     <div className="space-y-4">
